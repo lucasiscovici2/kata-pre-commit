@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+import sys
+import shutil
+import os
+
+
+os.system('rm -rf /home/jovyan/kata/.git')
+os.system('git config --global user.email "test@test.test"')
+os.system('cd /home/jovyan/kata && git init && git add .gitignore && git commit -m "first commit 🚀"')
+os.system('usermod -d /home/jovyan/kata')
+
+argv = sys.argv[1:] + ['--ContentsManager.allow_hidden=True', "--notebook-dir=/home/jovyan/kata"]
+os.system('echo "export HOME=/home/jovyan/kata; cd" > /home/jovyan/.bashrc')
+os.execv(shutil.which(argv[0]), argv)
